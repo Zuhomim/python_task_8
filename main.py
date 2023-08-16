@@ -2,13 +2,13 @@ import json
 
 
 def load_data():
-    """Создает список экземпляров класса Question на основе полученных данных файла questions"""
+    """Загружает данные из файла questions"""
     with open("questions.json", mode='r', encoding='utf-8') as file:
         return json.load(file)
 
 
 def create_question_list(data_, questions_):
-    pass
+    """Создает список экземпляров класса Question на основе полученных данных"""
     for item in data_:
         question_item = Question(item["q"], int(item["d"]), item["a"])
         questions_.append(question_item)
