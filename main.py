@@ -1,14 +1,18 @@
 import json
 
 
-def create_question_list(questions_):
+def load_data():
     """Создает список экземпляров класса Question на основе полученных данных файла questions"""
-    with open("./questions.json") as file:
-        content = json.load(file)
-        for item in content:
-            question_item = Question(item["q"], int(item["d"]), item["a"])
-            questions_.append(question_item)
-        return questions_
+    with open("questions.json", mode='r', encoding='utf-8') as file:
+        return json.load(file)
+
+
+def create_question_list(data_, questions_):
+    pass
+    for item in data_:
+        question_item = Question(item["q"], int(item["d"]), item["a"])
+        questions_.append(question_item)
+    return questions_
 
 
 def count_results(question_list_):
@@ -70,8 +74,10 @@ class Question:
 
 # Максимальная сложность для вывода корректной записи сложности в вопросе
 max_difficulty = 5
+# Перечень вопросов, загруженный из файла questions
+question_list = load_data()
 # Список вопросов (экземпляров класса Question) для запуска программы
-questions = create_question_list([])
+questions = create_question_list(question_list, [])
 
 
 # Основной код программы
